@@ -1,15 +1,20 @@
-/* VARIÁVEIS */
+/* ==========================================================================
+   1. VARIÁVEIS E CONFIGURAÇÕES BASE
+   ========================================================================== */
 :root {
     --dourado: #C5A059;
+    --dourado-claro: #e8c57d;
+    --dourado-escuro: #b8860b;
     --preto: #000000;
-    --cinza-bg: #0a0a0a;
+    --preto-suave: #0a0a0a;
     --branco: #ffffff;
+    --cinza-texto: #cccccc;
     --fonte-titulo: 'Cinzel', serif;
     --fonte-impacto: 'Bebas Neue', cursive;
     --fonte-corpo: 'Montserrat', sans-serif;
+    --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -25,28 +30,48 @@ body {
     color: var(--branco);
     font-family: var(--fonte-corpo);
     overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* CAPA / HERO */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.divisor-dourado {
+    width: 60px;
+    height: 4px;
+    background: #000;
+    margin-bottom: 30px;
+}
+
+.divisor-dourado-central {
+    width: 60px;
+    height: 3px;
+    background: var(--dourado);
+    margin: 0 auto 25px;
+}
+
+/* ==========================================================================
+   2. HEADER & HERO (CAPA)
+   ========================================================================== */
 .hero {
     height: 100vh;
     width: 100%;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/capa.jpeg');
     background-size: cover;
-    background-position: 65%, 15%; /* Ajustado para não cortar cabeças */
+    background-position: 92% 42%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
 }
 
-/* BARRA SUPERIOR */
 .top-bar {
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    padding: 0px 20px; /* Mais respiro lateral e superior */
+    padding: 20px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,13 +84,13 @@ body {
 }
 
 .social-icons a {
-    color: var(--branco);
+    color: var(--branco) !important;
     font-size: 1.2rem;
     transition: 0.3s;
 }
 
 .social-icons a:hover {
-    color: var(--dourado);
+    color: var(--dourado) !important;
     transform: translateY(-3px);
 }
 
@@ -78,6 +103,7 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
+    color: var(--branco);
 }
 
 .menu-hamburguer span {
@@ -94,7 +120,6 @@ body {
     margin: 8px 0;
 }
 
-/* HERO CONTENT */
 .hero-content h1 {
     font-family: var(--fonte-titulo);
     font-size: clamp(2.5rem, 8vw, 5rem);
@@ -109,7 +134,6 @@ body {
     padding: 12px 45px;
     border: 1px solid var(--branco);
     color: var(--branco);
-    text-decoration: none;
     border-radius: 50px;
     text-transform: uppercase;
     font-size: 0.8rem;
@@ -122,11 +146,16 @@ body {
     color: var(--preto);
 }
 
-/* MENU OVERLAY */
+/* ==========================================================================
+   3. MENU SIDEBAR (OVERLAY)
+   ========================================================================== */
 .menu-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
     z-index: 2000;
     display: flex;
     justify-content: center;
@@ -156,83 +185,55 @@ body {
     letter-spacing: 5px;
 }
 
-.menu-link:hover { color: var(--dourado); }
+.menu-link:hover {
+    color: var(--dourado);
+}
 
 .close-menu {
     position: absolute;
-    top: 40px; right: 40px;
-    font-size: 2rem;
+    top: 40px;
+    right: 40px;
+    font-size: 2.5rem;
     color: var(--dourado);
     cursor: pointer;
 }
 
-/* SEÇÕES SOBRE E TRABALHOS */
-/* SEÇÃO SOBRE PREMIUM */
+/* ==========================================================================
+   4. SEÇÕES DA HOME
+   ========================================================================== */
+
+/* --- SOBRE NÓS --- */
 .sobre-premium {
     padding: 100px 10%;
-    /* Degradê Dourado Metálico */
     background: linear-gradient(135deg, #b8860b 0%, #e8c57d 50%, #b8860b 100%);
-    color: #1a1a1a; /* Texto escuro para dar leitura sobre o dourado */
-    display: flex;
-    justify-content: center;
+    color: #1a1a1a;
 }
 
 .container-sobre-novo {
     max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 80px; /* Espaço entre texto e imagem */
+    gap: 80px;
 }
 
-/* Texto */
 .sobre-texto-novo {
     flex: 1;
 }
 
 .titulo-sobre {
     font-family: var(--fonte-impacto);
-    font-size: 5rem;
+    font-size: clamp(3rem, 7vw, 5rem);
     line-height: 0.9;
     color: #000;
     margin-bottom: 20px;
 }
 
 .titulo-sobre span {
-    color: #fff; /* "NÓS" em branco para destacar no dourado */
+    color: #fff;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
-.divisor-dourado {
-    width: 60px;
-    height: 4px;
-    background-color: #000;
-    margin-bottom: 30px;
-}
-
-.descricao-missao {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 25px;
-}
-
-.citacao-biblica {
-    font-style: italic;
-    border-left: 3px solid #000;
-    padding-left: 20px;
-    font-size: 1rem;
-    color: #333;
-}
-
-.citacao-biblica cite {
-    display: block;
-    margin-top: 10px;
-    font-weight: 700;
-    font-style: normal;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-}
-
-/* Imagem e Moldura */
 .sobre-imagem-box {
     flex: 1;
     display: flex;
@@ -242,53 +243,34 @@ body {
 .moldura-foto {
     position: relative;
     padding: 15px;
-    background: #fff; /* Moldura estilo fotografia */
+    background: #fff;
     box-shadow: 20px 20px 60px rgba(0,0,0,0.3);
-    transform: rotate(3deg); /* Leve inclinação para parecer uma foto real */
-    transition: 0.5s;
+    transform: rotate(3deg);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
 }
 
 .moldura-foto:hover {
-    transform: rotate(0deg) scale(1.05); /* Endireita e cresce ao passar o mouse */
+    transform: rotate(-1deg) scale(1.02) translateY(-8px) !important;
 }
 
 .moldura-foto img {
     width: 100%;
     max-width: 400px;
-    height: auto;
     display: block;
-    filter: sepia(20%); /* Tom levemente envelhecido profissional */
+    filter: sepia(20%);
+    transition: filter 0.5s;
 }
 
-/* RESPONSIVIDADE */
-@media (max-width: 992px) {
-    .container-sobre-novo {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .divisor-dourado {
-        margin: 0 auto 30px;
-    }
-    
-    .citacao-biblica {
-        border-left: none;
-        border-top: 2px solid #000;
-        padding: 20px 0 0;
-    }
+.moldura-foto:hover img {
+    filter: sepia(0%);
 }
 
-
-/* TRABALHOS CARDS */
-/* SEÇÃO TRABALHOS - ESTILO COLO DE DEUS */
+/* --- DISCOGRAFIA (MÚSICAS) --- */
 .sessao-musicas {
     padding: 100px 10%;
     background-color: #000;
     text-align: center;
-}
-
-.header-trabalhos {
-    margin-bottom: 60px;
 }
 
 .subtitulo-dourado {
@@ -301,32 +283,27 @@ body {
 .header-trabalhos h2 {
     font-family: var(--fonte-impacto);
     font-size: 4rem;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
-.header-trabalhos h2 span {
-    color: var(--dourado);
-}
-
-/* Grid das capas */
 .grid-musicas {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Cria colunas automáticas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 50px auto 0;
 }
 
-/* Card Individual */
 .card-musica-pro {
     background: #0a0a0a;
-    transition: 0.4s;
     text-align: left;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .capa-wrapper {
     position: relative;
-    aspect-ratio: 1 / 1; /* Garante que a capa seja sempre quadrada */
+    aspect-ratio: 1 / 1;
     overflow: hidden;
     cursor: pointer;
 }
@@ -335,105 +312,56 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.6s ease;
+    transition: 0.6s;
 }
 
-/* Overlay de Streaming */
 .streaming-overlay {
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Fundo escuro ao passar o mouse */
+    background: rgba(0,0,0,0.8);
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0; /* Invisível por padrão */
+    opacity: 0;
     transition: 0.4s;
-}
-
-.streaming-links {
-    display: flex;
-    gap: 25px;
-    transform: translateY(20px); /* Começa um pouco abaixo para o efeito de subida */
-    transition: 0.4s;
-}
-
-.streaming-links a {
-    color: var(--branco);
-    font-size: 1.8rem;
-    transition: 0.3s;
-}
-
-.streaming-links a:hover {
-    color: var(--dourado);
-    transform: scale(1.2);
-}
-
-/* Efeito Hover no Card */
-.card-musica-pro:hover .capa-wrapper img {
-    transform: scale(1.1);
+    padding: 20px;
 }
 
 .card-musica-pro:hover .streaming-overlay {
     opacity: 1;
 }
 
-.card-musica-pro:hover .streaming-links {
-    transform: translateY(0); /* Sobe os ícones */
+.streaming-links {
+    display: flex;
+    gap: 20px;
 }
 
-/* Informações abaixo da capa */
+.streaming-links a {
+    color: #fff;
+    font-size: 1.8rem;
+    transition: var(--transition);
+}
+
+.streaming-links a:hover {
+    transform: scale(1.3);
+    color: var(--dourado) !important;
+    filter: drop-shadow(0 0 8px var(--dourado));
+}
+
 .info-musica {
     padding: 20px 0;
 }
 
-.info-musica h3 {
-    font-family: var(--fonte-corpo);
-    font-weight: 700;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-}
-
-.info-musica p {
-    color: #666;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.breve {
-    color: var(--dourado);
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-/* Ajuste para Celular */
-@media (max-width: 600px) {
-    .grid-musicas {
-        grid-template-columns: 1fr; /* Uma coluna no celular */
-        padding: 0 20px;
-    }
-}
-/* --- CARD ESPECIAL DE PROJETO (HOME) --- */
-
-.cta-projeto-card .capa-wrapper img {
-    filter: brightness(0.5) sepia(30%); /* Deixa a foto do estúdio no clima do site */
-}
-
+/* --- CARD CTA PROJETO (HOME) --- */
 .cta-overlay {
-    background: rgba(0, 0, 0, 0.85) !important; /* Fundo mais escuro para o botão destacar */
-    backdrop-filter: blur(5px);
-    display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 20px;
+    background: rgba(0, 0, 0, 0.85) !important;
 }
 
 .status-projeto {
-    display: block;
     color: var(--dourado);
     font-size: 0.7rem;
     font-weight: bold;
@@ -442,18 +370,17 @@ body {
 }
 
 .btn-quero-fazer-parte {
-    display: inline-block;
     background: var(--dourado);
-    color: #000;
-    padding: 15px 20px;
+    color: #000 !important;
+    padding: 12px 20px;
     border-radius: 8px;
-    text-decoration: none;
     font-family: var(--fonte-impacto);
-    font-size: 1.1rem;
-    line-height: 1.2;
-    letter-spacing: 1px;
-    transition: var(--transition);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    font-size: 1.2rem;
+    line-height: 1.1;
+    text-align: center;
+    display: inline-block;
+    width: 90%;
+    transition: 0.3s;
 }
 
 .btn-quero-fazer-parte:hover {
@@ -461,207 +388,98 @@ body {
     transform: scale(1.05);
 }
 
-/* Garante que no mobile o botão esteja visível ou fácil de clicar */
-@media (max-width: 768px) {
-    .cta-overlay {
-        opacity: 1 !important; /* Sempre visível no mobile */
-        background: rgba(0, 0, 0, 0.6) !important;
-    }
-    .btn-quero-fazer-parte {
-        font-size: 0.9rem;
-        padding: 12px 15px;
-    }
-}
-/* SEÇÃO DNJ 2025 */
-/* --- SEÇÃO DNJ COM CARROSSEL --- */
+/* --- EVENTOS (DNJ) --- */
 .sessao-eventos {
     padding: 100px 10%;
     background-color: #050505;
     text-align: center;
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
 }
 
-/* Botão da Live */
-.cta-live {
-    margin-top: 30px;
-    margin-bottom: 50px;
+.titulo-dnj {
+    font-family: var(--fonte-impacto);
+    font-size: clamp(3rem, 7vw, 5rem);
+}
+
+.titulo-dnj span {
+    color: var(--dourado);
 }
 
 .btn-live {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 18px 40px;
+    padding: 15px 35px;
     background: var(--dourado);
     color: #000;
     text-decoration: none;
     font-weight: bold;
     border-radius: 50px;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    margin-top: 20px;
 }
 
-.btn-live:hover {
-    background: #fff;
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
-}
-
-.btn-live i {
-    font-size: 1.4rem;
-    color: #ff0000; /* Ícone do YouTube em vermelho */
-}
-
-/* Estrutura do Carrossel */
 .wrapper-carrossel {
     position: relative;
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 50px auto;
     display: flex;
     align-items: center;
 }
 
 .carrossel-fotos {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    scrollbar-width: none; /* Esconde scroll no Firefox */
-    padding: 20px 0;
+    padding: 10px 0;
+    scrollbar-width: none;
 }
 
 .carrossel-fotos::-webkit-scrollbar {
-    display: none; /* Esconde scroll no Chrome/Safari */
+    display: none;
 }
 
 .foto-slide {
-    min-width: 100%; /* No mobile mostra 1, no desktop podemos ajustar */
-    scroll-snap-align: center;
+    min-width: calc(50% - 8px);
+    scroll-snap-align: start;
     aspect-ratio: 16 / 9;
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    cursor: zoom-in;
 }
 
 .foto-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.5s;
 }
 
-/* Setas de Navegação */
 .seta-carrossel {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.7);
-    border: 1px solid var(--dourado);
+    background: rgba(0,0,0,0.8);
     color: var(--dourado);
-    width: 50px;
-    height: 50px;
+    border: 1px solid var(--dourado);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    transition: 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.seta-carrossel:hover {
-    background: var(--dourado);
-    color: #000;
-}
+.seta-carrossel.left { left: -20px; }
+.seta-carrossel.right { right: -20px; }
 
-.seta-carrossel.left { left: -25px; }
-.seta-carrossel.right { right: -25px; }
-
-/* Desktop: Mostrar mais de uma foto por vez */
-@media (min-width: 768px) {
-    .foto-slide {
-        min-width: calc(50% - 10px); /* Mostra 2 fotos */
-    }
-}
-
-@media (max-width: 768px) {
-    .seta-carrossel { display: none; } /* No mobile usa o dedo para arrastar */
-}
-/* --- MODAL LIGHTBOX --- */
-.modal-lightbox {
-    display: none; /* Escondido por padrão */
-    position: fixed;
-    z-index: 3000; /* Acima do menu e de tudo */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro semi-transparente */
-    backdrop-filter: blur(10px);
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.modal-wrapper {
-    position: relative;
-    max-width: 90%;
-    max-height: 85%;
-    display: flex;
-    justify-content: center;
-}
-
-#img-modal {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 85vh; /* Não deixa a foto ser maior que a altura da tela */
-    border: 2px solid var(--dourado);
-    border-radius: 8px;
-    box-shadow: 0 0 50px rgba(0,0,0,0.8);
-    animation: zoomIn 0.3s ease-out;
-}
-
-/* Animação de entrada */
-@keyframes zoomIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.fechar-modal {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    color: var(--dourado);
-    font-size: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.fechar-modal:hover {
-    color: #fff;
-    transform: scale(1.2);
-}
-
-/* Ajuste no Carrossel para indicar que é clicável */
-.foto-slide img {
-    cursor: zoom-in;
-}
-
-/* Ajuste para Celular */
-@media (max-width: 768px) {
-    .galeria-mosaico {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .titulo-dnj { font-size: 3rem; }
-}
-
-/* BANNER DE CHAMADA NA HOME */
+/* --- BANNER CTA ESTÚDIO --- */
 .chamada-projeto {
     height: 400px;
-    background: url('img/foto-estudio.jpg') center/cover no-repeat fixed; /* Use uma foto de microfone ou estúdio */
+    background: url('img/foto-estudio.jpg') center/cover no-repeat fixed;
     position: relative;
     display: flex;
     align-items: center;
@@ -679,14 +497,6 @@ body {
     padding: 0 10%;
 }
 
-.tag-projeto {
-    color: var(--dourado);
-    font-weight: bold;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    margin-bottom: 15px;
-}
-
 .btn-projeto {
     margin: 30px auto 0;
     padding: 15px 40px;
@@ -695,28 +505,92 @@ body {
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
-    transition: 0.3s;
+    width: fit-content;
 }
 
-.btn-projeto:hover {
-    background: #fff;
-    transform: scale(1.05);
+/* --- AGENDAMENTO PARÓQUIA --- */
+.sessao-agenda {
+    padding: 100px 10%;
+    background-color: var(--preto);
 }
 
-/* PÁGINA INTERNA DE PATROCÍNIO */
+.card-agenda {
+    background: #0f0f0f;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.agenda-content {
+    flex: 1;
+    padding: 60px;
+    text-align: left;
+}
+
+.agenda-content h2 {
+    font-family: var(--fonte-impacto);
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.lista-servicos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.lista-servicos span {
+    background: rgba(255,255,255,0.05);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.btn-agendar {
+    background: var(--dourado);
+    color: #000;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.agenda-imagem {
+    flex: 1;
+    height: 100%;
+    min-height: 400px;
+}
+
+.agenda-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* ==========================================================================
-   PÁGINA DE PATROCÍNIO (PROJETO-GRAVACAO.HTML)
+   5. PÁGINA INTERNA (PATROCÍNIO)
    ========================================================================== */
-
-/* Ajuste de Fundo e Layout Base */
 .pagina-interna {
-    background: transparent; /* Permite ver o vídeo */
+    background: transparent;
+}
+
+.pagina-interna .meta-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 80px 10% 40px;
 }
 
 .video-background {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: -2;
     overflow: hidden;
 }
@@ -725,255 +599,104 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(30%) brightness(0.4);
+    filter: brightness(0.4);
 }
 
 .video-overlay-dark {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.6);
     z-index: -1;
 }
 
-/* Topo / Navegação Interna */
 .topo-interno {
     width: 100%;
     padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.9);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0,0,0,0.9);
+    border-bottom: 1px solid #222;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .voltar {
-    color: var(--branco);
+    color: #fff;
     text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: 0.3s;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
-
-.voltar:hover { color: var(--dourado); }
 
 .logo-pequena {
-    height: 45px;
+    height: 50px;
     filter: brightness(0) invert(1);
-}
-
-/* Seção de Texto e Meta */
-.meta-section {
-    padding: 80px 10% 40px;
-    text-align: center;
-}
-
-.tag-missao {
-    color: var(--dourado);
-    font-weight: bold;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    display: block;
-    margin-bottom: 15px;
 }
 
 .texto-profissional-projeto {
     max-width: 800px;
-    margin: 30px auto 50px;
+    margin: 30px auto;
+    text-align: center;
 }
 
-.texto-profissional-projeto p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #ccc;
-    margin-bottom: 20px;
-}
-
-.texto-profissional-projeto strong { color: var(--dourado); }
-
-/* Box da Meta Financeira */
+/* --- BOX META E BARRA DE PROGRESSO --- */
 .box-meta {
     background: rgba(17, 17, 17, 0.8);
     backdrop-filter: blur(10px);
-    padding: 40px;
+    padding: 50px;
     border-radius: 20px;
     border: 1px solid var(--dourado);
-    max-width: 750px;
+    max-width: 1000px;
+    width: 90%;
     margin: 40px auto;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    text-align: center;
 }
 
 .valor-meta {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: 4rem;
     color: var(--dourado);
     font-family: var(--fonte-impacto);
-    margin: 10px 0;
 }
 
-/* Barra de Progresso Melhorada */
-/* BARRA DE PROGRESSO ÚNICA E PROFISSIONAL */
-/* BARRA DE PROGRESSO ÚNICA */
 .barra-progresso {
     width: 100%;
-    height: 30px;
-    background: rgba(255,255,255,0.1);
+    height: 40px;
+    background: rgba(255,255,255,0.05);
     border-radius: 50px;
-    margin: 25px 0;
+    margin: 30px 0;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(197, 160, 89, 0.3);
     position: relative;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }
 
 .progresso-atual {
-    width: 0; /* Começa em 0 para o JS fazer crescer */
+    width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #C5A059, #e8c57d);
+    background: linear-gradient(90deg, var(--dourado-escuro), var(--dourado-claro), var(--dourado-escuro));
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 15px;
+    padding-right: 20px;
     box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
     transition: width 2s cubic-bezier(0.1, 0, 0.2, 1);
 }
 
 .porcentagem {
-    font-size: 0.8rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 900;
     color: #000;
-    z-index: 10;
+    font-family: var(--fonte-impacto);
 }
 
-
-/* Cards de Modalidades (Cotas) */
-.cotas-patrocinio {
-    padding: 60px 10% 100px;
-    text-align: center;
-}
-
-.grid-cotas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 50px auto 0;
-}
-
-.card-cota-pro {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 40px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    min-height: 450px;
-}
-
-/* Efeito de destaque no Hover do Card */
-.card-cota-pro:hover {
-    transform: translateY(-15px);
-    background: rgba(197, 160, 89, 0.08);
-    border-color: var(--dourado);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-.card-cota-pro.destaque {
-    border: 1px solid rgba(197, 160, 89, 0.5);
-    background: rgba(197, 160, 89, 0.05);
-}
-
-.cota-icon {
-    font-size: 2.5rem;
-    color: var(--dourado);
-    margin-bottom: 20px;
-}
-
-/* Botão WhatsApp que aparece no Hover */
-.btn-cota-whats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: #25d366;
-    color: #fff;
-    padding: 15px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.85rem;
-    margin-top: 20px;
-    transition: all 0.4s ease;
-    
-    /* Estado Inicial (Escondido) */
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.card-cota-pro:hover .btn-cota-whats {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.btn-cota-whats:hover {
-    background: #128c7e;
-    transform: scale(1.02);
-}
-
-/* Selo de "Mais Escolhido" */
-.badge-destaque {
-    position: absolute;
-    top: 20px;
-    right: -35px;
-    background: var(--dourado);
-    color: #000;
-    padding: 5px 40px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    transform: rotate(45deg);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .btn-cota-whats {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    .card-cota-pro { min-height: auto; }
-    .meta-section { padding: 40px 5%; }
-}
-/* --- SEÇÃO FRUTOS DA MISSÃO --- */
+/* --- FRUTOS DA MISSÃO (STATS) --- */
 .frutos-missao {
     padding: 60px 10%;
     background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid rgba(197, 160, 89, 0.2);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-}
-
-.header-frutos {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.header-frutos h2 {
-    font-family: var(--fonte-impacto);
-    font-size: 3rem;
-    margin: 10px 0;
-}
-
-.header-frutos p {
-    max-width: 700px;
-    margin: 0 auto;
-    color: #888;
 }
 
 .grid-frutos {
@@ -989,23 +712,32 @@ body {
     overflow: hidden;
     width: 350px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: 0.4s;
-}
-
-.card-fruto:hover {
-    transform: translateY(-5px);
-    border-color: var(--dourado);
+    text-align: center;
 }
 
 .fruto-capa {
-    position: relative;
     height: 250px;
+    position: relative;
 }
 
 .fruto-capa img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.fruto-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats-fruto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .ano-tag {
@@ -1017,178 +749,144 @@ body {
     padding: 4px 12px;
     font-weight: bold;
     border-radius: 5px;
-    font-size: 0.8rem;
-}
-
-.fruto-info {
-    padding: 25px;
-    text-align: center;
-}
-
-.fruto-info h3 {
-    font-family: var(--fonte-corpo);
-    letter-spacing: 2px;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-.stats-fruto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .numero-grande {
     font-family: var(--fonte-impacto);
     font-size: 3.5rem;
     color: var(--dourado);
-    line-height: 1;
+    display: block;
+    text-align: center;
 }
 
-.label-stats {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    color: #666;
-    font-weight: bold;
-    margin-top: 5px;
+/* --- COTAS DE PATROCÍNIO --- */
+.cotas-patrocinio {
+    padding: 60px 10% 100px;
+    text-align: center;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .card-fruto { width: 100%; }
-    .numero-grande { font-size: 2.5rem; }
-}
-/* --- SEÇÃO DE AGENDAMENTO --- */
-.sessao-agenda {
-    padding: 100px 10%;
-    background-color: var(--preto);
+.grid-cotas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 50px auto 0;
 }
 
-.card-agenda {
-    background: #0f0f0f;
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
+.card-cota-pro {
+    position: relative;
     overflow: hidden;
-    border: 1px solid rgba(197, 160, 89, 0.2);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 60px 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    transition: 0.4s;
+    min-height: 450px;
 }
 
-/* Conteúdo do Texto */
-.agenda-content {
-    flex: 1;
-    padding: 60px;
+.card-cota-pro:hover {
+    transform: translateY(-15px);
+    border-color: var(--dourado);
 }
 
-.agenda-content h2 {
+.card-cota-pro.destaque {
+    border: 1px solid rgba(197, 160, 89, 0.5);
+    background: rgba(197, 160, 89, 0.05);
+}
+
+.cota-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cota-icon {
+    font-size: 2.5rem;
+    color: var(--dourado);
+    margin-bottom: 20px;
+}
+
+.cota-desc {
+    font-size: 0.95rem;
+    color: #bbb;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.badge-destaque {
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background: var(--dourado);
+    color: #000;
+    padding: 8px 40px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    transform: rotate(45deg);
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-cota-whats {
+    background: #25d366;
+    color: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.4s;
+}
+
+.card-cota-pro:hover .btn-cota-whats {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- SEÇÃO DE AGRADECIMENTO --- */
+.agradecimento-final {
+    padding: 100px 10%;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+    margin-top: 50px;
+}
+
+.agradecimento-final h2 {
     font-family: var(--fonte-impacto);
     font-size: clamp(2rem, 5vw, 3.5rem);
-    margin: 15px 0;
-    line-height: 1;
+    margin-bottom: 20px;
 }
 
-.divisor-dourado-central {
-    width: 60px;
-    height: 3px;
-    background: var(--dourado);
-    margin-bottom: 25px;
-}
-
-.agenda-content p {
-    color: #bbb;
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-}
-
-/* Lista de Benefícios */
-.lista-servicos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.lista-servicos span {
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: var(--branco);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.05);
-    padding: 8px 15px;
-    border-radius: 5px;
-}
-
-.lista-servicos i {
+.agradecimento-final h2 span {
     color: var(--dourado);
 }
 
-/* Botão WhatsApp */
-.btn-agendar {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--dourado);
-    color: #000;
-    padding: 18px 35px;
-    border-radius: 50px;
-    text-decoration: none;
+.agradecimento-final p {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    font-size: 1.2rem;
+    color: #ccc;
+    font-style: italic;
+}
+
+.missao-assinatura {
+    font-family: var(--fonte-titulo);
+    color: var(--dourado) !important;
     font-weight: bold;
-    transition: 0.4s;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    margin-top: 30px;
 }
 
-.btn-agendar:hover {
-    background: #fff;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
-}
-
-/* Imagem Lateral */
-.agenda-imagem {
-    flex: 1;
-    height: 100%;
-    align-self: stretch; /* Garante que a imagem ocupe toda a altura do card */
-}
-
-.agenda-imagem img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.7);
-    transition: 0.5s;
-}
-
-.card-agenda:hover .agenda-imagem img {
-    filter: brightness(1);
-    transform: scale(1.05);
-}
-
-/* RESPONSIVIDADE (CELULAR) */
-@media (max-width: 992px) {
-    .card-agenda {
-        flex-direction: column;
-    }
-    .agenda-imagem {
-        height: 300px;
-        width: 100%;
-        order: -1; /* Imagem fica em cima no celular */
-    }
-    .agenda-content {
-        padding: 40px 25px;
-        text-align: center;
-    }
-    .divisor-dourado-central {
-        margin: 0 auto 25px;
-    }
-    .lista-servicos {
-        justify-content: center;
-    }
-}
-
-/* RODAPÉ PREMIUM */
+/* ==========================================================================
+   6. RODAPÉ (FOOTER)
+   ========================================================================== */
 .rodape-premium {
     background-color: #000;
     padding: 100px 10% 40px;
@@ -1196,39 +894,14 @@ body {
     text-align: center;
 }
 
-/* O Grito de Guerra */
-.motto-section {
-    margin-bottom: 60px;
-}
-
-.pergunta-grito {
-    font-family: var(--fonte-corpo);
-    font-size: 0.9rem;
-    letter-spacing: 5px;
-    color: var(--branco);
-    opacity: 0.7;
-    margin-bottom: 10px;
-}
-
 .resposta-grito {
-    font-family: var(--fonte-impacto); /* Bebas Neue */
-    font-size: clamp(3rem, 10vw, 7rem); /* Fica gigante mas se ajusta ao celular */
+    font-family: var(--fonte-impacto);
+    font-size: clamp(3rem, 10vw, 7rem);
     color: var(--dourado);
-    line-height: 1;
-    letter-spacing: 2px;
 }
 
 .resposta-grito span {
-    color: var(--branco); /* Deixa a exclamação branca para um detalhe de design */
-}
-
-/* Divisor e Grid */
-.divisor-footer {
-    border: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--dourado), transparent);
-    margin-bottom: 50px;
-    opacity: 0.5;
+    color: var(--branco);
 }
 
 .footer-grid {
@@ -1236,90 +909,124 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     text-align: left;
-    align-items: flex-start;
-}
-
-.footer-col h4 {
-    font-family: var(--fonte-impacto);
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    color: var(--dourado);
+    margin-top: 50px;
 }
 
 .logo-footer {
     height: 60px;
-    margin-bottom: 20px;
     filter: brightness(0) invert(1);
-}
-
-.small-text {
-    font-size: 0.8rem;
-    color: #666;
-    line-height: 1.5;
 }
 
 .footer-link {
     display: block;
-    color: var(--branco);
-    text-decoration: none;
-    font-size: 0.9rem;
+    color: var(--branco) !important;
     margin-bottom: 10px;
+    font-size: 0.9rem;
     transition: 0.3s;
 }
 
 .footer-link:hover {
-    color: var(--dourado);
-    padding-left: 5px;
-}
-
-/* Ícones Sociais do Rodapé */
-.social-links-footer {
-    display: flex;
-    gap: 20px;
+    color: var(--dourado) !important;
 }
 
 .social-links-footer a {
-    color: var(--branco);
+    color: var(--branco) !important;
     font-size: 1.5rem;
-    transition: 0.4s;
+    margin-right: 15px;
+    transition: 0.3s;
 }
 
 .social-links-footer a:hover {
-    color: var(--dourado);
-    transform: translateY(-5px);
+    color: var(--dourado) !important;
 }
 
-/* Copyright Final */
 .copyright {
     margin-top: 80px;
     padding-top: 20px;
     border-top: 1px solid #111;
 }
 
-.copyright p {
-    font-size: 0.7rem;
-    color: #444;
-    letter-spacing: 1px;
+/* ==========================================================================
+   7. MODAIS E ANIMAÇÕES GLOBAIS
+   ========================================================================== */
+
+/* Lightbox Modal */
+.modal-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
 }
 
-/* RESPONSIVIDADE (CELULAR) */
-@media (max-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    .social-links-footer {
-        justify-content: center;
-    }
-    .resposta-grito {
-        font-size: 4rem;
-    }
+#img-modal {
+    max-width: 90%;
+    max-height: 85vh;
+    border: 3px solid var(--dourado);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
 }
-/* MOBILE */
-@media (max-width: 768px) {
-    .container-sobre, .contato-container, .cards-musica, .sobre-imagens {
+
+.modal-lightbox.aberto #img-modal {
+    transform: scale(1);
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 3rem;
+    color: var(--branco);
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* Scroll Reveal */
+.revelar {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.revelar.ativo {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   8. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 992px) {
+    .container-sobre-novo, 
+    .card-agenda, 
+    .footer-grid {
         flex-direction: column;
         text-align: center;
+    }
+
+    .footer-grid {
+        text-align: center;
+    }
+
+    .agenda-imagem {
+        height: 300px;
+    }
+
+    .foto-slide {
+        min-width: 100%;
+    }
+
+    .btn-cota-whats {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
