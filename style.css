@@ -417,6 +417,61 @@ body {
         padding: 0 20px;
     }
 }
+/* --- CARD ESPECIAL DE PROJETO (HOME) --- */
+
+.cta-projeto-card .capa-wrapper img {
+    filter: brightness(0.5) sepia(30%); /* Deixa a foto do estúdio no clima do site */
+}
+
+.cta-overlay {
+    background: rgba(0, 0, 0, 0.85) !important; /* Fundo mais escuro para o botão destacar */
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+.status-projeto {
+    display: block;
+    color: var(--dourado);
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.btn-quero-fazer-parte {
+    display: inline-block;
+    background: var(--dourado);
+    color: #000;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--fonte-impacto);
+    font-size: 1.1rem;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.btn-quero-fazer-parte:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+/* Garante que no mobile o botão esteja visível ou fácil de clicar */
+@media (max-width: 768px) {
+    .cta-overlay {
+        opacity: 1 !important; /* Sempre visível no mobile */
+        background: rgba(0, 0, 0, 0.6) !important;
+    }
+    .btn-quero-fazer-parte {
+        font-size: 0.9rem;
+        padding: 12px 15px;
+    }
+}
 /* SEÇÃO DNJ 2025 */
 /* --- SEÇÃO DNJ COM CARROSSEL --- */
 .sessao-eventos {
