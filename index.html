@@ -195,83 +195,27 @@
             </div>
         </section>
 
-        <!-- SEÇÃO: AGENDA DE MISSÕES -->
+      <!-- SEÇÃO: AGENDA DE MISSÕES -->
 <section id="agenda" class="sessao-agenda-lista">
     <div class="header-agenda">
         <span class="subtitulo-dourado">ONDE ESTAREMOS</span>
         <h2>PRÓXIMAS <span>MISSÕES</span></h2>
     </div>
 
-    <!-- Container de Cards -->
+    <!-- Onde as missões vão aparecer via JavaScript -->
     <div id="lista-agenda" class="container-agenda-cards">
-        
-        <!-- EVENTO 1 -->
-        <div class="card-evento">
-            <div class="data-evento" style="border-right: 2px solid var(--dourado); padding-right: 30px;">
-                <span class="dia" style="font-family: var(--fonte-impacto); font-size: 2rem; color: var(--dourado); display: block;">28</span>
-                <span class="mes" style="font-weight: bold; color: #fff;">MAR</span>
-            </div>
-            <div class="info-evento" style="flex: 1; text-align: left; padding: 0 30px;">
-                <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 5px;">Pós Encontro EJC</h3>
-                <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-church"></i> Basílica de São Miguel Arcanjo</p>
-                <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-map-marker-alt"></i> São Miguel Arcanjo/SP</p>
-            </div>
-            <div class="status-evento"><span class="badge-agenda" style="border: 1px solid var(--dourado); color: var(--dourado); padding: 5px 12px; border-radius: 50px; font-size: 0.7rem;">CONFIRMADO</span></div>
-        </div>
-         <!-- EVENTO 2 -->
-        <div class="card-evento">
-            <div class="data-evento" style="border-right: 2px solid var(--dourado); padding-right: 30px;">
-                <span class="dia" style="font-family: var(--fonte-impacto); font-size: 2rem; color: var(--dourado); display: block;">29</span>
-                <span class="mes" style="font-weight: bold; color: #fff;">MAR</span>
-            </div>
-            <div class="info-evento" style="flex: 1; text-align: left; padding: 0 30px;">
-                <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 5px;">Grupo de Jovens Filhos do Céu</h3>
-                <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-church"></i> Distrito do Tupy</p>
-                <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-map-marker-alt"></i> Itapetininga/SP</p>
-            </div>
-            <div class="status-evento"><span class="badge-agenda" style="border: 1px solid var(--dourado); color: var(--dourado); padding: 5px 12px; border-radius: 50px; font-size: 0.7rem;">CONFIRMADO</span></div>
-        </div>
-         <!-- EVENTO 3 -->
-        <div class="card-evento">
-            <div class="data-evento" style="border-right: 2px solid var(--dourado); padding-right: 30px;">
-                <span class="dia" style="font-family: var(--fonte-impacto); font-size: 2rem; color: var(--dourado); display: block;">19</span>
-                <span class="mes" style="font-weight: bold; color: #fff;">ABR</span>
-            </div>
-            <div class="info-evento" style="flex: 1; text-align: left; padding: 0 30px;">
-                <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 5px;">Grupo de Jovens</h3>
-                <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-church"></i> Paróquia São Roque</p>
-                <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-map-marker-alt"></i> Itapetininga/SP</p>
-            </div>
-            <div class="status-evento"><span class="badge-agenda" style="border: 1px solid var(--dourado); color: var(--dourado); padding: 5px 12px; border-radius: 50px; font-size: 0.7rem;">CONFIRMADO</span></div>
-        </div>
-         <!-- EVENTO 4 -->
-        <div class="card-evento">
-            <div class="data-evento" style="border-right: 2px solid var(--dourado); padding-right: 30px;">
-                <span class="dia" style="font-family: var(--fonte-impacto); font-size: 2rem; color: var(--dourado); display: block;">25</span>
-                <span class="mes" style="font-weight: bold; color: #fff;">ABR</span>
-            </div>
-            <div class="info-evento" style="flex: 1; text-align: left; padding: 0 30px;">
-                <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 5px;">Luau Mariano</h3>
-                <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-church"></i> Campos de Holambra</p>
-                <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-map-marker-alt"></i> Campos de Holambra</p>
-            </div>
-            <div class="status-evento"><span class="badge-agenda" style="border: 1px solid var(--dourado); color: var(--dourado); padding: 5px 12px; border-radius: 50px; font-size: 0.7rem;">CONFIRMADO</span></div>
-        </div>
-
-        <!-- REPETIR OS DEMAIS EVENTOS (2, 3, 4, 5...) -->
-        <!-- O JS cuidará de esconder os que passarem de 3 -->
-
+        <p id="carregando-agenda">Carregando missões...</p>
     </div> 
 
-    <!-- Área do Botão (Responsiva e Próxima à lista) -->
+    <!-- Área do Botão e Link (APENAS UM BLOCO AQUI) -->
     <div class="cta-agenda-final">
-        <button id="btn-carregar-agenda" class="btn-ouca">VER MAIS MISSÕES</button>
+        <button id="btn-carregar-agenda" class="btn-ouca" style="display:none;">VER MAIS MISSÕES</button>
         <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7; color: #fff;">
             Deseja levar a Missão Sedentos para sua paróquia? <a href="#agendamento" class="btn-agendar-link">Clique aqui</a>
         </p>
     </div>
 </section>
-</section>
+
         <!-- SEÇÃO: AGENDAMENTO -->
         <section id="agendamento" class="sessao-agenda">
             <div class="container-agenda">
@@ -298,7 +242,6 @@
             </div>
         </section>
     </main>
-
 
     <!-- RODAPÉ -->
     <footer id="contato" class="rodape-premium">

@@ -207,49 +207,105 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
+    const URL_PLANILHA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRzZveDQvFHn857898t5alXAoKjdDuqRn6jvBsCiZ8X1QIGF3yIb7ebtVws8gkyHaSd-2ORtrbstc8-/pub?output=csv";
+
     const listaAgenda = document.getElementById('lista-agenda');
     const btnCarregar = document.getElementById('btn-carregar-agenda');
-    const sessaoAgenda = document.getElementById('agenda'); 
     
-    if (listaAgenda && btnCarregar) {
-        const cards = Array.from(listaAgenda.getElementsByClassName('card-evento'));
-        const totalItens = cards.length;
-        let itensVisiveis = 3;
+    if (!listaAgenda || !btnCarregar) return;
 
-        const atualizarAgenda = () => {
-            cards.forEach((card, index) => {
-                if (index < itensVisiveis) {
-                    card.classList.add('show');
-                } else {
-                    card.classList.remove('show');
+    let eventosFuturos = [];
+    let itensVisiveis = 3;
+
+    fetch(URL_PLANILHA)
+        .then(res => res.text())
+        .then(data => {
+            const linhas = data.split('\n').slice(1); 
+            const hoje = new Date();
+            hoje.setHours(0, 0, 0, 0);
+
+            eventosFuturos = [];
+
+            linhas.forEach(linha => {
+                const col = linha.split(',');
+                if (col.length < 6) return; // Garante que a linha tem todas as colunas
+
+                const dataEvento = new Date(col[0].trim() + "T00:00:00");
+
+                if (dataEvento >= hoje) {
+                    eventosFuturos.push({
+                        dataStr: col[0].trim(),
+                        titulo: col[1].trim(),
+                        local: col[2].trim(),
+                        cidade: col[3].trim(),
+                        dia: col[4].trim(),
+                        mes: col[5].trim()
+                    });
                 }
             });
 
-            // Lógica do Texto do Botão
-            if (totalItens <= 3) {
-                btnCarregar.style.display = 'none';
-            } else if (itensVisiveis >= totalItens) {
-                btnCarregar.innerText = "VER MENOS";
-            } else {
-                btnCarregar.innerText = "VER MAIS MISSÕES";
-            }
-        };
+            // Ordenar por data
+            eventosFuturos.sort((a, b) => new Date(a.dataStr) - new Date(b.dataStr));
 
-        atualizarAgenda();
-
-        btnCarregar.addEventListener('click', () => {
-            if (itensVisiveis < totalItens) {
-                itensVisiveis += 3;
-                atualizarAgenda();
-            } else {
-                itensVisiveis = 3;
-                atualizarAgenda();
-                // Scroll suave para não perder a referência
-                window.scrollTo({
-                    top: sessaoAgenda.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }
+            renderizarAgenda();
+        })
+        .catch(err => {
+            listaAgenda.innerHTML = "<p>Erro ao carregar agenda.</p>";
+            console.error(err);
         });
+
+    function renderizarAgenda() {
+        listaAgenda.innerHTML = ""; 
+        
+        if (eventosFuturos.length === 0) {
+            listaAgenda.innerHTML = "<p style='color:#aaa; padding: 20px;'>Nenhuma missão agendada no momento.</p>";
+            btnCarregar.style.display = 'none';
+            return;
+        }
+
+        eventosFuturos.forEach((ev, index) => {
+            const card = document.createElement('div');
+            card.className = 'card-evento';
+            
+            // Lógica de visibilidade: apenas os primeiros 'itensVisiveis' recebem a classe 'show' e display flex
+            if (index < itensVisiveis) {
+                card.classList.add('show');
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+            
+            card.innerHTML = `
+                <div class="data-evento" style="border-right: 2px solid var(--dourado); padding-right: 30px;">
+                    <span class="dia" style="font-family: var(--fonte-impacto); font-size: 2rem; color: var(--dourado); display: block;">${ev.dia}</span>
+                    <span class="mes" style="font-weight: bold; color: #fff;">${ev.mes}</span>
+                </div>
+                <div class="info-evento" style="flex: 1; text-align: left; padding: 0 30px;">
+                    <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 5px;">${ev.titulo}</h3>
+                    <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-church"></i> ${ev.local}</p>
+                    <p style="font-size: 0.8rem; color: #aaa;"><i class="fas fa-map-marker-alt"></i> ${ev.cidade}</p>
+                </div>
+                <div class="status-evento"><span class="badge-agenda" style="border: 1px solid var(--dourado); color: var(--dourado); padding: 5px 12px; border-radius: 50px; font-size: 0.7rem;">CONFIRMADO</span></div>
+            `;
+            listaAgenda.appendChild(card);
+        });
+
+        // Atualiza o botão "Ver Mais"
+        if (eventosFuturos.length > 3) {
+            btnCarregar.style.display = 'inline-block';
+            btnCarregar.innerText = itensVisiveis >= eventosFuturos.length ? "VER MENOS" : "VER MAIS MISSÕES";
+        } else {
+            btnCarregar.style.display = 'none';
+        }
     }
+
+    btnCarregar.addEventListener('click', () => {
+        if (itensVisiveis < eventosFuturos.length) {
+            itensVisiveis += 3; // Mostra mais 3
+        } else {
+            itensVisiveis = 3; // Reseta para 3
+            window.scrollTo({ top: document.getElementById('agenda').offsetTop - 50, behavior: 'smooth' });
+        }
+        renderizarAgenda();
+    });
 });
